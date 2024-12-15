@@ -2,7 +2,6 @@ package validator
 
 import (
 	"time"
-
 	"github.com/go-playground/validator/v10"
 )
 

@@ -15,7 +15,8 @@ import (
 	"github.com/CZMA-eng/urlshortener/internal/api"
 	"github.com/CZMA-eng/urlshortener/internal/cache"
 	"github.com/CZMA-eng/urlshortener/internal/service"
-	"github.com/CZMA-eng/urlshortener/pkg"
+	"github.com/CZMA-eng/urlshortener/pkg/shortcode"
+	"github.com/CZMA-eng/urlshortener/pkg/validator"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -67,6 +68,7 @@ func (a *Application) Init(filePath string) error{
 	
 	e.POST("/api/url", a.urlHandler.CreateURL)
 	e.GET("/:code", a.urlHandler.RedirectURL)
+	e.Validator = validator.NewCustomValidator()
 	a.e = e
 	return nil
 }
